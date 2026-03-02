@@ -48,7 +48,7 @@ onMounted(async () => {
     ],
     view: new View({
       center: fromLonLat([0, 0]),
-      zoom: 10,
+      zoom: 0.1,
     }),
   })
 
@@ -75,7 +75,7 @@ watch([lat, lng], ([newLat, newLng]) => {
     const coords = fromLonLat([newLng, newLat])
     markerFeature.getGeometry()?.setCoordinates(coords)
     map.getView().setCenter(coords)
-    map.getView().setZoom(15)
+    map.getView().setZoom(17)
   }
 })
 
@@ -87,9 +87,6 @@ onUnmounted(() => {
 
 <template>
   <main>
-    <h1>hallo</h1>
-    <p>Lat: {{ lat ?? 'waiting...' }}</p>
-    <p>long: {{ lng ?? 'waiting...' }}</p>
     <div ref="mapContainer" class="map-container"></div>
   </main>
 </template>
@@ -97,6 +94,6 @@ onUnmounted(() => {
 <style scoped>
 .map-container {
   width: 100%;
-  height: 400px;
+  height: 50rem;
 }
 </style>
