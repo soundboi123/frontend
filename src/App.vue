@@ -88,7 +88,7 @@ watch([lat, lng], ([newLat, newLng]) => {
     markerFeature.getGeometry()?.setCoordinates(coords)
     map.getView().animate({
       center: coords,
-      duration: 1,
+      duration: 500,
     })
   }
 })
@@ -108,6 +108,6 @@ onUnmounted(() => {
 <style scoped>
 .map-container {
   width: 100%;
-  height: 50rem;
+  height: 40rem;
 }
 </style>
