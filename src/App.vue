@@ -48,25 +48,37 @@ onMounted(async () => {
     ],
     view: new View({
       center: fromLonLat([0, 0]),
-      zoom: 0.1,
+      zoom: 15,
     }),
   })
 
   ws.onopen = () => {
     ws.send(JSON.stringify({ type: 'REGISTER', userId: 'user_123' }))
 
-    watcherId = navigator.geolocation.watchPosition((pos) => {
-      lat.value = pos.coords.latitude
-      lng.value = pos.coords.longitude
+    watcherId = navigator.geolocation.watchPosition(
+      (pos) => {
+        lat.value = pos.coords.latitude
+        lng.value = pos.coords.longitude
 
-      ws.send(
-        JSON.stringify({
-          type: 'LOCATION',
-          lat: lat.value,
-          lng: lng.value,
-        }),
-      )
-    })
+        if (ws.readyState === WebSocket.OPEN) {
+          ws.send(
+            JSON.stringify({
+              type: 'LOCATION',
+              lat: lat.value,
+              lng: lng.value,
+            }),
+          )
+        }
+      },
+      (err) => {
+        console.error('geolocatie error:', err)
+      },
+      {
+        enableHighAccuracy: true,
+        maximumAge: 0,
+        timeout: 10000,
+      },
+    )
   }
 })
 
@@ -74,8 +86,10 @@ watch([lat, lng], ([newLat, newLng]) => {
   if (map && newLat !== null && newLng !== null) {
     const coords = fromLonLat([newLng, newLat])
     markerFeature.getGeometry()?.setCoordinates(coords)
-    map.getView().setCenter(coords)
-    map.getView().setZoom(17)
+    map.getView().animate({
+      center: coords,
+      duration: 500,
+    })
   }
 })
 
