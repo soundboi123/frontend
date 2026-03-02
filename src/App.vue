@@ -5,18 +5,12 @@ import View from 'ol/View'
 import TileLayer from 'ol/layer/Tile'
 import OSM from 'ol/source/OSM'
 import { fromLonLat } from 'ol/proj'
-import { Feature } from 'ol'
-import { Point } from 'ol/geom'
 
 const lat = ref<number | null>(null)
 const lng = ref<number | null>(null)
 
 const mapContainer = ref<HTMLDivElement | null>(null)
 let map: Map | null = null
-
-const marker = new Feature({
-  geometry: new Point(fromLonLat([0, 0])),
-})
 
 const ws = new WebSocket('wss://devoted-solace-production.up.railway.app')
 let watcherId: number | null = null
