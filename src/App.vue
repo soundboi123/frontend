@@ -88,7 +88,7 @@ watch([lat, lng], ([newLat, newLng]) => {
     markerFeature.getGeometry()?.setCoordinates(coords)
     map.getView().animate({
       center: coords,
-      duration: 500,
+      duration: 10000,
     })
   }
 })
