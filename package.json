@@ -18,7 +18,8 @@
     "ol": "^10.8.0",
     "pwa": "^1.9.7",
     "vite-plugin-pwa": "^1.2.0",
-    "vue": "^3.5.29"
+    "vue": "^3.5.29",
+    "workbox-window": "^7.4.0"
   },
   "devDependencies": {
     "@tsconfig/node24": "^24.0.4",
