@@ -7,9 +7,10 @@ import OSM from 'ol/source/OSM'
 import { fromLonLat } from 'ol/proj'
 import { Feature } from 'ol'
 import { Point } from 'ol/geom'
-import { Icon, Style } from 'ol/style'
+import { Icon, Style, Fill, Stroke } from 'ol/style'
 import VectorSource from 'ol/source/Vector'
 import VectorLayer from 'ol/layer/Vector'
+import { defaults as defaultControls, Zoom } from 'ol/control'
 
 const lat = ref<number | null>(null)
 const lng = ref<number | null>(null)
@@ -40,9 +41,16 @@ onMounted(async () => {
   await nextTick()
   map = new Map({
     target: mapContainer.value!,
+    controls: defaultControls({ attribution: false, zoom: false }).extend([
+      new Zoom({
+        className: 'custom-zoom',
+      }),
+    ]),
     layers: [
       new TileLayer({
-        source: new OSM(),
+        source: new OSM({
+          attributions: [],
+        }),
       }),
       markerLayer,
     ],
@@ -108,6 +116,6 @@ onUnmounted(() => {
 <style scoped>
 .map-container {
   width: 100%;
-  height: 40rem;
+  height: 100vh;
 }
 </style>
