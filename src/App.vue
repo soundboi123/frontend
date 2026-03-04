@@ -41,7 +41,7 @@ onMounted(async () => {
   await nextTick()
   map = new Map({
     target: mapContainer.value!,
-    controls: defaultControls({ attribution: false, zoom: false }).extend([
+    controls: defaultControls({ attribution: false, zoom: false, rotate: false }).extend([
       new Zoom({
         className: 'custom-zoom',
       }),
@@ -110,6 +110,11 @@ onUnmounted(() => {
 <template>
   <main>
     <div ref="mapContainer" class="map-container"></div>
+    <div class="navbar">
+      <button><i class="fa-solid fa-person-walking"></i></button>
+      <button><i class="fa-solid fa-house"></i></button>
+      <button><i class="fa-solid fa-ellipsis-vertical"></i></button>
+    </div>
   </main>
 </template>
 
