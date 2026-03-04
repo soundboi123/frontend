@@ -16,6 +16,8 @@
   },
   "dependencies": {
     "ol": "^10.8.0",
+    "pwa": "^1.9.7",
+    "vite-plugin-pwa": "^1.2.0",
     "vue": "^3.5.29"
   },
   "devDependencies": {
