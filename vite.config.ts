@@ -33,17 +33,17 @@ export default defineConfig({
         categories: ['travel', 'navigation', 'education'],
         icons: [
           {
-            src: '/icons/icon-192.png',
+            src: '/image/walking.png',
             sizes: '192x192',
             type: 'image/png',
           },
           {
-            src: '/icons/icon-512.png',
+            src: '/image/walking.png',
             sizes: '512x512',
             type: 'image/png',
           },
           {
-            src: '/icons/icon-maskable-512.png',
+            src: '/image/walking.png',
             sizes: '512x512',
             type: 'image/png',
             purpose: 'maskable',
