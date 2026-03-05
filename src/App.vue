@@ -66,9 +66,11 @@ function updateMonumentMarkers(data: Monument[]) {
 
   data.forEach((monument) => {
     // Parsen van "Point(lng lat)"
-    const [mLng, mLat] = monument.coord.replace('Point(', '').replace(')', '').split(' ')
-    const mLng = parseFloat(parts[0] ?? '0')
-    const mLat = parseFloat(parts[1] ?? '0')
+    const [mLng, mLat] = monument.coord
+      .replace('Point(', '')
+      .replace(')', '')
+      .split(' ')
+      .map(Number)
 
     const feature = new Feature({
       geometry: new Point(fromLonLat([mLng, mLat])),
