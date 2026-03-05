@@ -38,7 +38,7 @@ const markerLayer = new VectorLayer({
   source: new VectorSource({
     features: [markerFeature],
   }),
-  zIndex: 5,
+  zIndex: 10,
 })
 const monumentSource = new VectorSource()
 const monumentLayer = new VectorLayer({
@@ -66,11 +66,9 @@ function updateMonumentMarkers(data: Monument[]) {
 
   data.forEach((monument) => {
     // Parsen van "Point(lng lat)"
-    const [mLng, mLat] = monument.coord
-      .replace('Point(', '')
-      .replace(')', '')
-      .split(' ')
-      .map(Number)
+    const parts = monument.coord.replace('Point(', '').replace(')', '').split(' ')
+    const mLng = parseFloat(parts[0] ?? '0')
+    const mLat = parseFloat(parts[1] ?? '0')
 
     const feature = new Feature({
       geometry: new Point(fromLonLat([mLng, mLat])),
