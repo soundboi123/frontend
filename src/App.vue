@@ -78,7 +78,7 @@ function updateMonumentMarkers(data: Monument[]) {
     monumentSource.addFeature(feature)
   })
 }
-const ws = new WebSocket('ws://localhost:8080')
+const ws = new WebSocket('wss://devoted-solace-production.up.railway.app')
 let watcherId: number | null = null
 ws.onmessage = (event) => {
   const msg = JSON.parse(event.data)
